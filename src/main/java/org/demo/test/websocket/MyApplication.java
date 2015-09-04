@@ -1,4 +1,4 @@
-package org.juffrou.test.websocket;
+package org.demo.test.websocket;
 
 import java.util.Set;
 
@@ -10,14 +10,6 @@ import javax.websocket.DeploymentException;
 import javax.websocket.Extension;
 import javax.websocket.server.ServerContainer;
 
-/**
- * This is the entry point in the application, executed when the servlet container first starts. 
- * It registers the websocket endpoint with the server container.<p>
- * You can have this class listen to the servlet context initialization by using the @WebListener annotation or
- * configuring it in the web.xml.
- * @author Carlos Martins
- *
- */
 @WebListener
 public class MyApplication implements ServletContextListener {
 	
@@ -30,7 +22,7 @@ public class MyApplication implements ServletContextListener {
 
 		final ServerContainer serverContainer = (ServerContainer) container.getAttribute(SERVER_CONTAINER_ATTRIBUTE);
 		try {
-			serverContainer.addEndpoint(new MyEndpointConfig(MyEndpoint.class, "/wstest"));
+			serverContainer.addEndpoint(new MyEndpointConfig());
 		} catch (DeploymentException e) {
 			e.printStackTrace();
 		}
@@ -40,5 +32,7 @@ public class MyApplication implements ServletContextListener {
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
+		// TODO Auto-generated method stub
+		
 	}
 }

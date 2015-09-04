@@ -1,4 +1,4 @@
-package org.juffrou.test.websocket;
+package org.demo.test.websocket;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,20 +9,7 @@ import javax.websocket.Encoder;
 import javax.websocket.Extension;
 import javax.websocket.server.ServerEndpointConfig;
 
-/**
- * @author cem
- *
- */
 public class MyEndpointConfig implements ServerEndpointConfig {
-
-	private final String path;
-	private final Class<?> endpointClass;
-	
-	MyEndpointConfig(Class<?> endpointClass, String path) {
-		this.endpointClass = endpointClass;
-		this.path = path;
-	}
-	
 	@Override
 	public List<Class<? extends Encoder>> getEncoders() {
 		return Collections.emptyList();
@@ -45,7 +32,7 @@ public class MyEndpointConfig implements ServerEndpointConfig {
 
 	@Override
 	public Class<?> getEndpointClass() {
-		return endpointClass;
+		return MyEndpoint.class;
 	}
 
 	@Override
@@ -55,7 +42,7 @@ public class MyEndpointConfig implements ServerEndpointConfig {
 
 	@Override
 	public String getPath() {
-		return path;
+		return "/wstest";
 	}
 
 	@Override

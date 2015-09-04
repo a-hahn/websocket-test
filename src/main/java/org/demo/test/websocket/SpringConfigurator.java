@@ -1,4 +1,4 @@
-package org.juffrou.test.websocket;
+package org.demo.test.websocket;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +16,6 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * This class is a copy of org.springframework.web.socket.server.standard.SpringConfigurator.<p>
  * A {@link javax.websocket.server.ServerEndpointConfig.Configurator} for initializing
  * {@link ServerEndpoint}-annotated classes through Spring.
  *

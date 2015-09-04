@@ -1,55 +1,79 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.juffrou.test</groupId>
+	<groupId>org.demo.test</groupId>
 	<artifactId>websocket-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>war</packaging>
 
 	<properties>
-		<exec.mainClass>org.juffrou.test.WebsocketClientTest</exec.mainClass>
-		<jdk.version>1.8</jdk.version>
-		<project.encoding>utf-8</project.encoding>
-		<homepage.url>https://github.com/cemartins/websocket-test</homepage.url>
-		<log4j.version>2.0.2</log4j.version>
-	</properties>
 
+	</properties>
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
 					<configuration>
-						<source>${jdk.version}</source>
-						<target>${jdk.version}</target>
-						<encoding>${project.encoding}</encoding>
+						<source>1.7</source>
+						<target>1.7</target>
 					</configuration>
 				</plugin>
 				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<artifactId>maven-war-plugin</artifactId>
 					<configuration>
-						<encoding>${project.encoding}</encoding>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>webstart-maven-plugin</artifactId>
-					<version>1.0-beta-6</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>keytool-maven-plugin</artifactId>
-					<version>1.5</version>
-				</plugin>
-
 			</plugins>
 		</pluginManagement>
 	</build>
 
-	<modules>
-		<module>websocket-client</module>
-		<module>websocket-server</module>
-	</modules>
+	<dependencies>
+	<!-- Unfortunately ubuntu 14.04 server (Apache Tomcat 7.0.52) does not provide these 2 jars
+		from the apache distribution :( -->
+		<dependency>
+    		<groupId>com.demo.ubuntu.missing</groupId>
+    		<artifactId>websocket-api</artifactId>
+    		<version>7.0.52</version>
+		    <scope>system</scope>
+    		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/websocket-api.jar</systemPath>
+		</dependency>
+		<dependency>
+    		<groupId>com.demo.ubuntu.missing</groupId>
+    		<artifactId>tomcat-websocket</artifactId>
+    		<version>7.0.52</version>
+		    <scope>system</scope>
+    		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/tomcat7-websocket.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+ 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+	</dependencies>
 </project>
